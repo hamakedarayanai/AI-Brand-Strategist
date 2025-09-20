@@ -1,0 +1,52 @@
+
+import React from 'react';
+import type { SampleContent, ContentPillar } from '../types';
+import { SparklesIcon } from './icons';
+import Loader from './Loader';
+
+interface GeneratedContentDisplayProps {
+  content: SampleContent | null;
+  pillars: ContentPillar[];
+  onGenerate: (pillarTitle: string) => void;
+  isLoading: boolean;
+}
+
+const GeneratedContentDisplay: React.FC<GeneratedContentDisplayProps> = ({ content, pillars, onGenerate, isLoading }) => {
+  return (
+    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl animate-fade-in">
+        <h3 className="text-xl font-semibold text-slate-200 mb-4 flex items-center gap-2">
+            <SparklesIcon className="w-6 h-6 text-slate-400" />
+            Generate Sample Content
+        </h3>
+        <p className="text-slate-400 mb-4 text-sm">Select a content pillar to generate a sample Instagram caption.</p>
+
+        <div className="flex flex-wrap gap-2 mb-6">
+            {pillars.map(pillar => (
+                <button 
+                    key={pillar.title}
+                    onClick={() => onGenerate(pillar.title)}
+                    disabled={isLoading}
+                    className="px-4 py-2 text-sm font-medium bg-slate-700 text-slate-300 rounded-full hover:bg-cyan-500 hover:text-white disabled:opacity-50 disabled:cursor-wait transition"
+                >
+                    {pillar.title}
+                </button>
+            ))}
+        </div>
+
+        {isLoading && (
+            <div className="min-h-[150px] flex items-center justify-center bg-slate-900/50 rounded-lg p-4">
+                <Loader />
+            </div>
+        )}
+
+        {content && !isLoading && (
+            <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 animate-fade-in">
+                <h4 className="font-bold text-cyan-300 mb-2">Sample Post for "{content.pillar}"</h4>
+                <p className="text-slate-300 whitespace-pre-wrap">{content.content}</p>
+            </div>
+        )}
+    </div>
+  );
+};
+
+export default GeneratedContentDisplay;
