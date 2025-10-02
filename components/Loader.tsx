@@ -3,78 +3,65 @@ import React from 'react';
 
 const Loader: React.FC = () => {
   return (
-    <svg
-      className="w-12 h-12 text-cyan-400"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12 2.75V6.25"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 17.75V21.25"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21.25 12L17.75 12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.25 12L2.75 12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M18.364 5.63604L15.8995 8.10051"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8.10059 15.8995L5.63608 18.364"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M18.364 18.364L15.8995 15.8995"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8.10059 8.10051L5.63608 5.63604"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <>
+      <div className="loader"></div>
       <style>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        .loader {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          border: 3px solid;
+          border-color: #38bdf8 #38bdf8 transparent transparent;
+          box-sizing: border-box;
+          animation: spin 1.2s linear infinite;
         }
-        svg {
+        .loader::after,
+        .loader::before {
+          content: '';  
+          box-sizing: border-box;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          border: 3px solid;
+          border-color: transparent transparent #0ea5e9 #0ea5e9;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          box-sizing: border-box;
+          animation: spin-back 1s linear infinite;
+          transform-origin: center center;
+        }
+        .loader::before {
+          width: 32px;
+          height: 32px;
+          border-color: #67e8f9 #67e8f9 transparent transparent;
           animation: spin 1.5s linear infinite;
         }
+        
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        @keyframes spin-back {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(-360deg);
+          }
+        }
       `}</style>
-    </svg>
+    </>
   );
 };
 

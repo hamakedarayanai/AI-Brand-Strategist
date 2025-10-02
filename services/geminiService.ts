@@ -156,8 +156,8 @@ export const generateSampleContent = async (pillarTitle: string, brandName: stri
       The target audience is: ${input.targetAudience}.
 
       Write a sample Instagram post caption that fits the content pillar: "${pillarTitle}".
-      The caption should be engaging, include relevant hashtags, and have a clear call to action.
-      Format the output as a single block of text.
+      The caption should be engaging, include relevant hashtags, have a clear call to action, and be formatted with appropriate line breaks for readability.
+      Ensure the output is ready to be copied and pasted directly into Instagram.
     `;
     
     const response = await ai.models.generateContent({

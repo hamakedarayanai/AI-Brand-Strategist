@@ -44,7 +44,7 @@ const InputForm: React.FC<InputFormProps> = ({ onGenerate, isGenerating }) => {
   );
 
   return (
-    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl">
+    <div className="bg-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl relative card-gradient-border">
       <form onSubmit={handleSubmit} className="space-y-6">
         <FormField
           id="productIdea"

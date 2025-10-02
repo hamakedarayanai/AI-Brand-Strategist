@@ -11,7 +11,7 @@ interface ContentStrategyDisplayProps {
 const ContentStrategyDisplay: React.FC<ContentStrategyDisplayProps> = ({ strategy, isLoading }) => {
     if (isLoading) {
         return (
-            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl animate-pulse">
+            <div className="bg-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl animate-pulse relative card-gradient-border">
                 <div className="h-6 w-1/3 bg-slate-700 rounded-md mb-4"></div>
                 <div className="space-y-4">
                     <div className="h-20 bg-slate-700 rounded-md"></div>
@@ -25,7 +25,7 @@ const ContentStrategyDisplay: React.FC<ContentStrategyDisplayProps> = ({ strateg
     if (!strategy) return null;
 
     return (
-        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 md:p-8 shadow-2xl animate-fade-in">
+        <div className="bg-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl animate-fade-in relative card-gradient-border">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
             <h3 className="text-xl font-semibold text-slate-200 mb-4 flex items-center gap-2">

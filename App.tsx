@@ -106,7 +106,7 @@ const App: React.FC = () => {
           </p>
         </header>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <InputForm onGenerate={handleGenerate} isGenerating={isLoading} />
           
           {step > GenerationStep.IDLE && (
@@ -133,18 +133,25 @@ const App: React.FC = () => {
             </div>
           )}
 
-          <div className="space-y-12 mt-12">
-            {brandKit && <BrandKitDisplay brandKit={brandKit} />}
-            {(isGeneratingLogos || logos.length > 0) && <LogoDisplay logos={logos} isLoading={isGeneratingLogos} />}
-            {(isGeneratingStrategy || contentStrategy) && <ContentStrategyDisplay strategy={contentStrategy} isLoading={isGeneratingStrategy} />}
-            {contentStrategy && !isGeneratingStrategy && (
-              <GeneratedContentDisplay
-                content={sampleContent}
-                pillars={contentStrategy.pillars}
-                onGenerate={handleGenerateSampleContent}
-                isLoading={isGeneratingSampleContent}
-              />
-            )}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mt-12">
+            {/* Left side */}
+            <div className="lg:col-span-3 space-y-12">
+              {brandKit && <BrandKitDisplay brandKit={brandKit} />}
+              {(isGeneratingStrategy || contentStrategy) && <ContentStrategyDisplay strategy={contentStrategy} isLoading={isGeneratingStrategy} />}
+            </div>
+            
+            {/* Right side */}
+            <div className="lg:col-span-2 space-y-12">
+              {(isGeneratingLogos || logos.length > 0) && <LogoDisplay logos={logos} isLoading={isGeneratingLogos} brandName={brandKit?.brandName || 'logo'} />}
+              {contentStrategy && !isGeneratingStrategy && (
+                <GeneratedContentDisplay
+                  content={sampleContent}
+                  pillars={contentStrategy.pillars}
+                  onGenerate={handleGenerateSampleContent}
+                  isLoading={isGeneratingSampleContent}
+                />
+              )}
+            </div>
           </div>
         </div>
       </main>
